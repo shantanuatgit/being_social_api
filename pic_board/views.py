@@ -10,6 +10,8 @@ from rest_framework.validators import ValidationError
 
 from pic_board import serializers, models
 from profiles_api.models import UserProfile, FollowerFollowing
+from profiles_api import pagination
+
 from .permissions import IsOwnerOrReadOnly, IsCommentOwnerOrPostOwner, IsLikeOwnerOrReadOnly
 # Create your views here.
 
@@ -31,6 +33,7 @@ class PicPostRetrieveUpdateDestroyApiView(generics.RetrieveUpdateDestroyAPIView)
     queryset = models.PicPost.objects.all()
     serializer_class = serializers.PicPostSerializer
     authentication_classes = (TokenAuthentication,)
+    pagination_class = pagination.ProfilePagination
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     
     def get_serializer(self, *args, **kwargs):
@@ -112,6 +115,7 @@ class LikePostDestroyApiView(generics.RetrieveDestroyAPIView):
 class CommentPostApiView(generics.ListCreateAPIView):
     serializer_class = serializers.CommentPostSerializer
     authentication_classes = (TokenAuthentication,)
+    pagination_class = pagination.ProfilePagination
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -148,6 +152,7 @@ class CommentPostApiView(generics.ListCreateAPIView):
 class CommentPostDestroyApiView(generics.RetrieveDestroyAPIView):
     serializer_class = serializers.CommentPostSerializer
     authentication_classes = (TokenAuthentication,)
+    pagination_class = pagination.ProfilePagination
     permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
@@ -174,6 +179,7 @@ class CommentPostDestroyApiView(generics.RetrieveDestroyAPIView):
 class PostFeedListApiView(generics.ListAPIView):
     serializer_class = serializers.PicPostSerializer
     authentication_classes = (TokenAuthentication,)
+    pagination_class = pagination.ProfilePagination
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
