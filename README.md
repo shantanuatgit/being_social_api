@@ -7,7 +7,7 @@
 #### Pagination, Indexing used for fast responses to the request.
 
 
-#### To access the API: 
+## To access the API: 
 #### Accounts end points
 #### http://shantanu3250.pythonanywhere.com/accounts/signup/                           --> create an account
 #### http://shantanu3250.pythonanywhere.com/accounts/login/                            --> login account
@@ -17,7 +17,7 @@
 #### http://shantanu3250.pythonanywhere.com/accounts/follower/email/                   --> view the followers list of user
 #### http://shantanu3250.pythonanywhere.com/accounts/following/email/                  --> view the following list of user
 
-#### Pic Post end points                                                                
+## Pic Post end points                                                                
 #### http://shantanu3250.pythonanywhere.com/posts/create/                                --> upload pic with a caption
 #### http://shantanu3250.pythonanywhere.com/posts/edit/id_of_post                        --> edit the posted pic (only caption update allowed)
 #### http://shantanu3250.pythonanywhere.com/posts/post-reaction/id_of_post               --> like the posted pic
