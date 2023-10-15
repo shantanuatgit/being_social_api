@@ -25,7 +25,7 @@
 #### http://shantanu3250.pythonanywhere.com/posts/post-comment/id_of_post/comment_id     --> Reply to a comment
 #### http://shantanu3250.pythonanywhere.com/posts/delete-comment/id_of_post              --> delete Comment/reply on the posted pic
 #### http://shantanu3250.pythonanywhere.com/posts/delete-like/id_of_post                 --> unlike the posted pic
-#### http://shantanu3250.pythonanywhere.com/posts/post-feed/                             --> list of posted pics in users feed to whom user follow(post shown from mewest to oldest)
+#### http://shantanu3250.pythonanywhere.com/posts/post-feed/                             --> list of posted pics in users feed to whom user follow(post shown from newest to oldest)
 
 
 
