@@ -8,7 +8,7 @@
 
 
 ## To access the API: 
-#### Accounts end points
+## Accounts end points
 #### http://shantanu3250.pythonanywhere.com/accounts/signup/                           --> create an account
 #### http://shantanu3250.pythonanywhere.com/accounts/login/                            --> login account
 #### http://shantanu3250.pythonanywhere.com/accounts/email/                            --> view Profile (for unauthenticated users posts will not be shown)
