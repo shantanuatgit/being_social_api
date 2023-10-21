@@ -12,7 +12,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('login/', views.UserLoginApiView.as_view()),
     path('signup/', views.UserCreateApiView.as_view()),
-    path('<str:email>/', views.UserProfileFullUpdate.as_view()),
+    path('<int:pk>/', views.UserProfileFullUpdate.as_view()),
     path('follow/<int:pk>/', views.FollowerFollowingCreateDestroyApiView.as_view()),
     path('remove-follower/<int:pk>/', views.FollowerDestroyApiView.as_view()),
     path('follower/<str:email>/', views.FollowerListApiView.as_view()),

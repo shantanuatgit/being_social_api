@@ -59,7 +59,7 @@ class LikePostCreateListApiView(generics.ListCreateAPIView):
     def get_queryset(self):
         """List the users who have liked the selected post"""
         post_id = self.kwargs.get('pk')
-        return models.LikePost.objects.filter(post__pk=post_id)
+        return models.LikePost.objects.filter(post__pk=post_id).select_related('liked_by')
     
     def get_permissions(self):
         if self.request.method == 'DELETE':
@@ -120,7 +120,7 @@ class CommentPostApiView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         post_id = self.kwargs.get('post_id')
-        return models.CommentPost.objects.filter(post__pk=post_id, reply_to_comment__isnull=True)
+        return models.CommentPost.objects.filter(post__pk=post_id, reply_to_comment__isnull=True).select_related('reply_to_comment')
 
     @transaction.atomic
     def create(self, request, *args, **kwargs):

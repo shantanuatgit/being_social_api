@@ -36,9 +36,12 @@ class UserCreateApiView(generics.CreateAPIView):
 class UserProfileFullUpdate(generics.RetrieveUpdateDestroyAPIView):
     """Retriving user profile or updating full profile"""
 
-    queryset = models.UserProfile.objects.all()
     authentication_classes = (TokenAuthentication,)
     permission_classes = [UpdateOwnProfile]
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('pk')
+        return models.UserProfile.objects.filter(id=user_id)
 
     def get_serializer(self, *args, **kwargs):
         """Switch to Restricted mode to hide post for unautheticated user"""
@@ -48,17 +51,14 @@ class UserProfileFullUpdate(generics.RetrieveUpdateDestroyAPIView):
             return serializers.UserProfileRestrictedSerilizer(*args, **kwargs)
 
     
-    def get_object(self):
-        email = self.kwargs.get('email')
-        try:
-            profile = models.UserProfile.objects.get(email=email)
-            return profile
-        except:
-            raise ValidationError("This page does not exists or link is broken")
-
 
     def perform_update(self, serializer):
-        instance = self.get_object()
+        user_id = self.kwargs.get('pk')
+        try:
+            instance = models.UserProfile.objects.get(id=user_id)
+        except models.UserProfile.DoesNotExist:
+            raise ValidationError("User profile not found")
+
         new_avatar = serializer.validated_data.get('avatar')
         if new_avatar and instance.avatar:
             instance.avatar.delete(save=False)

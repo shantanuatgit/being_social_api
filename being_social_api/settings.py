@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'profiles_api',
     'pic_board',
     'rest_framework',
+    'debug_toolbar',
 ]
 
 REST_FRAMEWORK = {
@@ -51,7 +52,12 @@ REST_FRAMEWORK = {
         # Other authentication classes
     ),
 
-}   
+}
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,  # Show the toolbar only in Debug mode
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'being_social_api.urls'
@@ -95,6 +102,9 @@ DATABASES = {
         'PASSWORD': 'shantanu189',
         'HOST': 'localhost',
         'PORT': '5432',
+        'TEST': {
+            'NAME': ':memory:',
+        },
     }
 }
 

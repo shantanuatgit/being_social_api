@@ -15,7 +15,7 @@ class PicPost(models.Model):
     comments_count = models.PositiveIntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_index=True)
 
     def save(self, *args, **kwargs):
         # Open the uploaded image using Pillow
@@ -55,8 +55,8 @@ class LikePost(models.Model):
 class CommentPost(models.Model):
     """Stores users comments on post"""
     content = models.CharField(max_length=500)
-    commenter = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    post = models.ForeignKey(PicPost, on_delete=models.CASCADE)
-    reply_to_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    commenter = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_index=True)
+    post = models.ForeignKey(PicPost, on_delete=models.CASCADE, db_index=True)
+    reply_to_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies', db_index=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
