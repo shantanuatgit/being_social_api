@@ -177,5 +177,4 @@ class FollowingListApiView(generics.ListAPIView):
 
     def get_queryset(self):
         user_email = self.kwargs.get('email')
-        # user = models.UserProfile.get(email=user_email)
         return models.FollowerFollowing.objects.filter(follower__email=user_email)
