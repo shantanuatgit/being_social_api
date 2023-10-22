@@ -9,23 +9,23 @@
 
 ## To access the API: 
 ## Accounts end points
-#### http://shantanu3250.pythonanywhere.com/accounts/signup/                           --> create an account
-#### http://shantanu3250.pythonanywhere.com/accounts/login/                            --> login account
-#### http://shantanu3250.pythonanywhere.com/accounts/email/                            --> view Profile (for unauthenticated users posts will not be shown)
-#### http://shantanu3250.pythonanywhere.com/accounts/follow/id of user/                --> follow and unfollow user
-#### http://shantanu3250.pythonanywhere.com/accounts/remove-follower/id_of_user/       --> remove a follower from your followers list
-#### http://shantanu3250.pythonanywhere.com/accounts/follower/email/                   --> view the followers list of user
-#### http://shantanu3250.pythonanywhere.com/accounts/following/email/                  --> view the following list of user
+#### http://shantanu4n.pythonanywhere.com/accounts/signup/                           --> create an account
+#### http://shantanu4n.pythonanywhere.com/accounts/login/                            --> login account
+#### http://shantanu4n.pythonanywhere.com/accounts/user_id/                            --> view Profile (for unauthenticated users posts will not be shown)
+#### http://shantanu4n.pythonanywhere.com/accounts/follow/id of user/                --> follow and unfollow user
+#### http://shantanu4n.pythonanywhere.com/accounts/remove-follower/id_of_user/       --> remove a follower from your followers list
+#### http://shantanu4n.pythonanywhere.com/accounts/follower/email/                   --> view the followers list of user
+#### http://shantanu4n.pythonanywhere.com/accounts/following/email/                  --> view the following list of user
 
 ## Pic Post end points                                                                
-#### http://shantanu3250.pythonanywhere.com/posts/create/                                --> upload pic with a caption
-#### http://shantanu3250.pythonanywhere.com/posts/edit/id_of_post                        --> edit the posted pic (only caption update allowed)
-#### http://shantanu3250.pythonanywhere.com/posts/post-reaction/id_of_post               --> like the posted pic
-#### http://shantanu3250.pythonanywhere.com/posts/post-comment/id_of_post                --> Comment on the posted pic
-#### http://shantanu3250.pythonanywhere.com/posts/post-comment/id_of_post/comment_id     --> Reply to a comment
-#### http://shantanu3250.pythonanywhere.com/posts/delete-comment/id_of_post              --> delete Comment/reply on the posted pic
-#### http://shantanu3250.pythonanywhere.com/posts/delete-like/id_of_post                 --> unlike the posted pic
-#### http://shantanu3250.pythonanywhere.com/posts/post-feed/                             --> list of posted pics in users feed to whom user follow(post shown from newest to oldest)
+#### http://shantanu4n.pythonanywhere.com/posts/create/                                --> upload pic with a caption
+#### http://shantanu4n.pythonanywhere.com/posts/edit/id_of_post                        --> edit the posted pic (only caption update allowed)
+#### http://shantanu4n.pythonanywhere.com/posts/post-reaction/id_of_post               --> like the posted pic
+#### http://shantanu4n.pythonanywhere.com/posts/post-comment/id_of_post                --> Comment on the posted pic
+#### http://shantanu4n.pythonanywhere.com/posts/post-comment/id_of_post/comment_id     --> Reply to a comment
+#### http://shantanu4n.pythonanywhere.com/posts/delete-comment/id_of_post              --> delete Comment/reply on the posted pic
+#### http://shantanu4n.pythonanywhere.com/posts/delete-like/id_of_post                 --> unlike the posted pic
+#### http://shantanu4n.pythonanywhere.com/posts/post-feed/                             --> list of posted pics in users feed to whom user follow(post shown from newest to oldest)
 
 
 
