@@ -19,6 +19,22 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from rest_framework import permissions
+from rest_framework.authentication import TokenAuthentication
+
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="being_social_api",
+        default_version='v1',
+        description="Being Social API is for Create, Read, Update and Destroy Post, Follow Unfollow users and Visit Profile.",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+    authentication_classes=(TokenAuthentication,),
+)
 
 if settings.DEBUG:
     import debug_toolbar
@@ -27,6 +43,7 @@ if settings.DEBUG:
         path('accounts/', include('profiles_api.urls')),
         path('posts/', include('pic_board.urls')),
         path('__debug__/', include(debug_toolbar.urls)),
+        path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 # if settings.DEBUG:

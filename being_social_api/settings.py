@@ -43,7 +43,21 @@ INSTALLED_APPS = [
     'pic_board',
     'rest_framework',
     'debug_toolbar',
+    'drf_yasg',
 ]
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+        }
+    }
+}
+
+
 
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%B %d, %Y %I:%M %p',
