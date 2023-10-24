@@ -6,8 +6,18 @@
 #### Django-AuthToken used to authenticate the request to API.
 #### Pagination, Indexing used for fast responses to the request.
 
+#### This project created on Ubuntu 22 LTS OS
+#### To run the project locally:
+Clone Project via terminal using git command:
+```
+git clone https://github.com/shantanuatgit/being_social_api.git
+```
+```python
+pip install -r requirements.txt
+```
 
 ## To access the API: 
+#### http://shantanu4n.pythonanywhere.com/docs/
 ## Accounts end points
 #### http://shantanu4n.pythonanywhere.com/accounts/signup/                           --> create an account
 #### http://shantanu4n.pythonanywhere.com/accounts/login/                            --> login account
