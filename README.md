@@ -1,7 +1,7 @@
 ### This is an API created using Django and Django REST Framework
 #### The operations like "liking the post, adding the comment, following the user" are ATOMIC.
 #### The API can handle high concurrent rate simultaneously (at a same time), the code ensures good concurrancy control.
-#### No Race Conditions: Due to the atomic nature of the update() operation and the use of locks, race conditions, where multiple requests try to update the count at the same time, are effectively prevented. Each request waits its turn to update the count.
+No Race Conditions: Due to the atomic nature of the update() operation and the use of locks, race conditions, where multiple requests try to update the count at the same time, are effectively prevented. Each request waits its turn to update the count.
 In a high-concurrency scenario where millions of users are liking a post simultaneously, using a database-level atomic operation like update() with the F() expression is a robust way to ensure that the likes_count field is correctly updated without encountering race conditions.
 #### Django-AuthToken used to authenticate the request to API.
 #### Pagination, Indexing used for fast responses to the request.
