@@ -77,8 +77,12 @@ class LikePostCreateListApiView(generics.ListCreateAPIView):
             like_post.save()
 
             models.PicPost.objects.filter(pk=post_id).update(likes_count=F('likes_count')+1)
-        except:
+        except models.PicPost.DoesNotExist:
+            raise ValidationError("post does not exists.")
+        except models.LikePost.DoesNotExist:
             raise ValidationError("user have already liked the post.")
+        except:
+            raise ValidationError("Something went wrong, please try again later.")
 
         return Response({"detail": "Post Liked successfully."}, status=status.HTTP_201_CREATED)
 
