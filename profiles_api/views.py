@@ -80,7 +80,7 @@ class FollowerFollowingCreateDestroyApiView(generics.CreateAPIView, generics.Des
     authentication_classes = (TokenAuthentication,)
 
     def get_queryset(self):
-        return models.FollowerFollowing.objects.filter(follower=self.request.user)
+        return models.FollowerFollowing.objects.filter(follower=self.request.user).select_related('leader', 'follower')
 
     @transaction.atomic
     def perform_create(self, serializer):
@@ -131,7 +131,7 @@ class FollowerDestroyApiView(generics.DestroyAPIView, generics.GenericAPIView):
     authentication_classes = (TokenAuthentication,)
 
     def get_queryset(self):
-        return models.FollowerFollowing.objects.filter(leader=self.request.user)
+        return models.FollowerFollowing.objects.filter(leader=self.request.user).select_related('leader', 'follower')
 
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
@@ -165,7 +165,7 @@ class FollowerListApiView(generics.ListAPIView):
 
     def get_queryset(self):
         user_email = self.kwargs.get('email')
-        return models.FollowerFollowing.objects.filter(leader__email=user_email)
+        return models.FollowerFollowing.objects.filter(leader__email=user_email).select_related('leader', 'follower')
     
 
 
@@ -177,4 +177,4 @@ class FollowingListApiView(generics.ListAPIView):
 
     def get_queryset(self):
         user_email = self.kwargs.get('email')
-        return models.FollowerFollowing.objects.filter(follower__email=user_email)
+        return models.FollowerFollowing.objects.filter(follower__email=user_email).select_related('leader', 'follower')

@@ -30,7 +30,7 @@ class PicPostCreateApiView(generics.CreateAPIView):
 
 
 class PicPostRetrieveUpdateDestroyApiView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.PicPost.objects.all()
+    queryset = models.PicPost.objects.all().select_related('user')
     serializer_class = serializers.PicPostSerializer
     authentication_classes = (TokenAuthentication,)
     pagination_class = pagination.ProfilePagination
@@ -59,7 +59,7 @@ class LikePostCreateListApiView(generics.ListCreateAPIView):
     def get_queryset(self):
         """List the users who have liked the selected post"""
         post_id = self.kwargs.get('pk')
-        return models.LikePost.objects.filter(post__pk=post_id).select_related('liked_by')
+        return models.LikePost.objects.filter(post__pk=post_id).select_related('liked_by', 'post')
     
     def get_permissions(self):
         if self.request.method == 'DELETE':
@@ -96,7 +96,7 @@ class LikePostDestroyApiView(generics.RetrieveDestroyAPIView):
     def get_queryset(self):
         """List the user who have liked the selected post"""
         like_id = self.kwargs.get('pk')
-        return models.LikePost.objects.filter(pk=like_id)
+        return models.LikePost.objects.filter(pk=like_id).select_related('post', 'liked_by')
     
     def get_permissions(self):
         if self.request.method == 'DELETE':
@@ -124,7 +124,7 @@ class CommentPostApiView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         post_id = self.kwargs.get('post_id')
-        return models.CommentPost.objects.filter(post__pk=post_id, reply_to_comment__isnull=True).select_related('reply_to_comment')
+        return models.CommentPost.objects.filter(post__pk=post_id, reply_to_comment__isnull=True).select_related('reply_to_comment', 'commenter', 'post')
 
     @transaction.atomic
     def create(self, request, *args, **kwargs):
@@ -166,7 +166,7 @@ class CommentPostDestroyApiView(generics.RetrieveDestroyAPIView):
 
     def get_queryset(self):
         comment_id = self.kwargs.get('pk')
-        return models.CommentPost.objects.filter(pk=comment_id)
+        return models.CommentPost.objects.filter(pk=comment_id).select_related('commenter', 'post', 'reply_to_comment')
     
     @transaction.atomic
     def perform_destroy(self, instance):
@@ -188,5 +188,5 @@ class PostFeedListApiView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        pic_posts = models.PicPost.objects.filter(Q(user__leader__follower=user)).order_by('-created_at')
+        pic_posts = models.PicPost.objects.filter(Q(user__leader__follower=user)).select_related('user').order_by('-created_at')
         return pic_posts
